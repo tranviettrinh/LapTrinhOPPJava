@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LapTrinhOPPJava;
+package lapTrinhOPPJava;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -23,8 +23,9 @@ public class ChiaTamGiac {
             for(int i=1;i<a;i++){
                 double x = Math.sqrt((double)i/a);
                 double res = x*b;
-                System.out.println(dou.format(res));
+                System.out.print(dou.format(res)+" ");
             }
+            System.out.println("");
     }
     }
 }

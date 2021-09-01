@@ -1,2 +1,0 @@
-LapTrinhOPPJava.PhanSo
-LapTrinhOPPJava.PhanSoBD
