@@ -5,6 +5,11 @@
  */
 package lapTrinhOPPJava.OPP;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,6 +34,11 @@ public class SinhVien3 {
         this.gba = gba;
     }
 
+    public float getGba() {
+        return gba;
+    }
+    
+
     public String toString() {
         return String.format(id + " " + name + " " + classroom + " " + birthday + " " + String.format("%.2f", gba));
     }
@@ -37,7 +47,7 @@ public class SinhVien3 {
         Scanner p = new Scanner(System.in);
         int t = Integer.parseInt(p.nextLine());
         int u = 0;
-        List<SinhVien> list = new ArrayList<>();
+        List<SinhVien3> list = new ArrayList<>();
         while (u++ < t) {
             String msv = new String();
             if (u < 10) {
@@ -48,27 +58,25 @@ public class SinhVien3 {
             String ten = p.nextLine();
             String tencn = new String();
             String[] tachten = ten.split(" ");
-            for(int j =0; j< tachten.length;j++){
-                if(!tachten[j].isEmpty()){
-                    tachten[j]= tachten[j].substring(0,1).toUpperCase().concat(tachten[j].substring(1).toLowerCase());
+            for (int j = 0; j < tachten.length; j++) {
+                if (!tachten[j].isEmpty()) {
+                    tachten[j] = tachten[j].substring(0, 1).toUpperCase().concat(tachten[j].substring(1).toLowerCase());
                     tencn = tencn.concat(tachten[j].concat(" "));
                 }
             }
-            tencn = tencn.substring(0, tencn.length()-1);
+            tencn = tencn.substring(0, tencn.length() - 1);
             String lop = p.nextLine();
             String ngaysinhtt = p.nextLine();
             String[] tach = ngaysinhtt.split("/");
-            if (tach[0].length() == 1) {
-                tach[0] = "0".concat(tach[0]);
-            }
-            if (tach[1].length() == 1) {
-                tach[1] = "0".concat(tach[1]);
-            }
-            String ngaysinhcn = tach[0].concat("/".concat(tach[1].concat("/".concat(tach[2]))));
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate nsinh = LocalDate.of(Integer.parseInt(tach[2]), Integer.parseInt(tach[1]), Integer.parseInt(tach[0]));
+            String ngaysinhcn = nsinh.format(dtf);
+
             float gbacn = Float.parseFloat(p.nextLine());
-            SinhVien sv = new SinhVien(msv, tencn, lop, ngaysinhcn, gbacn);
+            SinhVien3 sv = new SinhVien3(msv, tencn, lop, ngaysinhcn, gbacn);
             list.add(sv);
         }
+        list.sort((o1,o2)-> o2.getGba()> o1.getGba()? 1:-1);
         for (int i = 0; i < t; i++) {
             System.out.println(list.get(i).toString());
         }
