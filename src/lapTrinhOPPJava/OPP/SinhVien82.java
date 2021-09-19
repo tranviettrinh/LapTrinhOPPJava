@@ -42,9 +42,10 @@ public class SinhVien82 {
 
     public static void main(String[] args) {
         Scanner p = new Scanner(System.in);
+        int u = Integer.parseInt(p.nextLine());
         int t = 0;
         List<SinhVien82> list = new ArrayList<>();
-        while (t++ < 1000) {
+        while (t++ < u) {
             String masv = p.nextLine();
             if(masv.isEmpty()){
                 break;
@@ -56,9 +57,7 @@ public class SinhVien82 {
             list.add(sv);
             
         }
-        Comparator<SinhVien82> sortlop = (o1, o2) -> o1.getClassroom().compareTo(o2.getClassroom());
-            Comparator<SinhVien82> sortid = (o1, o2) -> o1.getClassroom().compareTo(o2.getClassroom());
-            list.sort(sortlop.thenComparing(sortid));
+        list.sort((o1,o2)-> o1.getId().compareTo(o2.getId()));
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i).toString());
             }
