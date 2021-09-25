@@ -51,19 +51,28 @@ public class HangHoa117 {
         long a = (getDongianhap()*getSoluong()*5+50)/100;
         return a;
     }
+    public String getPhiVanChuyen2(){
+        return String.valueOf(getPhiVanChuyen());
+    }
     public long getThanhTien(){
         long b = getDongianhap()*getSoluong()+getPhiVanChuyen();
         return b;
     }
+    public String getThanhTien2(){
+        return String.valueOf(getThanhTien());
+    }
+    public String getGiaBan2(){
+        return String.valueOf(getGiaBan());
+    }
     public long getGiaBan(){
-        double c = ((double)getThanhTien()+ (double)getThanhTien()*2/100)/(double)getSoluong();
+        long c = (getThanhTien()+ getThanhTien()*2/100)/getSoluong();
         
-        long d = ((long)c+100)/100*100;
+        long d = (c+100)/100*100;
         
         return d;
     }
     public String toString(){
-        return (String.format(id+" "+ten+" "+donvitinh+" "+getPhiVanChuyen()+" "+getThanhTien()+" "+getGiaBan()));
+        return (String.format(id+" "+ten+" "+donvitinh+" "+getPhiVanChuyen2()+" "+getThanhTien2()+" "+getGiaBan2()));
     }
     public static void main(String[] args) {
         Scanner p = new Scanner(System.in);
@@ -79,7 +88,7 @@ public class HangHoa117 {
             HangHoa117 hh = new HangHoa117(id,ten,donvitinh,dongianhap,soluong);
             list.add(hh);
         }
-        list.sort((o1,o2)-> o1.getGiaBan()>o2.getGiaBan()?-1:1);
+        list.sort((o1,o2)-> o1.getGiaBan()>o2.getGiaBan()?-1:o1.getGiaBan()==o2.getGiaBan()?0:1);
         for(int i =0; i<list.size(); i++){
             System.out.println(list.get(i).toString());
         }

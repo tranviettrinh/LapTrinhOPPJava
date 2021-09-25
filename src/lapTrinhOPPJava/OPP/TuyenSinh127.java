@@ -82,17 +82,17 @@ public class TuyenSinh127 {
         }
     }
 
-    public String getTrangThai() {
+    public String getTrangThai(float e) {
         float c = getTongDiem();
-        if (c >= 24) {
+        if (c >= e) {
             return "TRUNG TUYEN";
         } else {
             return "TRUOT";
         }
     }
 
-    public String toString() {
-        return String.format(id + " " + name + " " + getDiemUuTien() + " " + getDiem() + " " + getTrangThai());
+    public String toString(float a) {
+        return String.format(id + " " + name + " " + getDiemUuTien() + " " + getDiem()+" "+getTrangThai(a));
     }
 
     public static void main(String[] args) {
@@ -112,8 +112,11 @@ public class TuyenSinh127 {
         Comparator<TuyenSinh127> sorttongdiem = (o1,o2)-> o1.getTongDiem()>o2.getTongDiem()?-1:o1.getTongDiem()>o2.getTongDiem()?0:1;
         Comparator<TuyenSinh127> sortma = (o1,o2)-> o1.getId().compareTo(o2.getId());
         list.sort(sorttongdiem.thenComparing(sortma));
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).toString());
+        int d = Integer.parseInt(p.nextLine());
+        float f = list.get(d-1).getTongDiem();
+        System.out.println(f);
+        for(int i=0; i<list.size();i++){
+            System.out.println(list.get(i).toString(f));
         }
 
     }
