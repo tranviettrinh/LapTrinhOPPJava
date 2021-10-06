@@ -5,6 +5,7 @@
  */
 package lapTrinhOPPJava.OPP;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class HangHoa117 {
     public HangHoa117() {
     }
 
-    public HangHoa117(String id, String ten, String donvitinh, int dongianhap, int soluong) {
+    public HangHoa117(String id, String ten, String donvitinh, int dongianhap, int soluong) throws ParseException{
         this.id = id;
         this.ten = ten;
         this.donvitinh = donvitinh;
@@ -47,34 +48,31 @@ public class HangHoa117 {
     public int getSoluong() {
         return soluong;
     }
-    public long getPhiVanChuyen(){
+    public int getPhiVanChuyen(){
         long a = (getDongianhap()*getSoluong()*5+50)/100;
-        return a;
+        int a1= (int) Math.ceil(a);
+        return a1;
     }
-    public String getPhiVanChuyen2(){
-        return String.valueOf(getPhiVanChuyen());
-    }
-    public long getThanhTien(){
+    
+    public int getThanhTien(){
         long b = getDongianhap()*getSoluong()+getPhiVanChuyen();
-        return b;
-    }
-    public String getThanhTien2(){
-        return String.valueOf(getThanhTien());
-    }
-    public String getGiaBan2(){
-        return String.valueOf(getGiaBan());
-    }
-    public long getGiaBan(){
+        int b1 = (int)b;
+        return b1;
+    }    
+    
+    public int getGiaBan(){
         long c = (getThanhTien()+ getThanhTien()*2/100)/getSoluong();
         
-        long d = (c+100)/100*100;
+//        long d = (c+100)/100*100;
+        int d = (int) Math.ceil((c+100)/100*100);
         
         return d;
     }
+    @Override
     public String toString(){
-        return (String.format(id+" "+ten+" "+donvitinh+" "+getPhiVanChuyen2()+" "+getThanhTien2()+" "+getGiaBan2()));
+        return (String.format(id+" "+ten+" "+donvitinh+" "+getPhiVanChuyen()+" "+getThanhTien()+" "+getGiaBan()));
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException{
         Scanner p = new Scanner(System.in);
         int t = Integer.parseInt(p.nextLine());
         int u =0;

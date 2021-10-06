@@ -5,6 +5,7 @@
  */
 package lapTrinhOPPJava.OPP;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,8 +48,13 @@ public class MatHang134 {
     public float getGiaban() {
         return giaban;
     }
-    public float getLoiNhuan(){
-        return getGiaban()-getGiamua();
+    public float LoiNhuan(){        
+        float a = (getGiaban()-getGiamua());
+        return a;
+    }
+    public String getLoiNhuan(){
+        DecimalFormat df = new DecimalFormat("0.00");
+        return String.valueOf(df.format(LoiNhuan()));
     }
     public String toString(){
         return String.format(id+" "+name+" "+team+" "+getLoiNhuan());
@@ -66,7 +72,7 @@ public class MatHang134 {
             MatHang134 mh = new MatHang134(String.valueOf(u),ten,nhom,mua,ban);
             list.add(mh);
         }
-        list.sort((o1,o2)-> o1.getLoiNhuan()>o2.getLoiNhuan()?-1:1);
+        list.sort((o1,o2)-> o1.LoiNhuan()>o2.LoiNhuan()?-1:1);
         for(int i=0;i<list.size();i++){
             System.out.println(list.get(i).toString());
         }
